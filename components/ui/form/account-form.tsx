@@ -5,6 +5,10 @@ import {
   createClientComponentClient,
 } from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/types/supabase";
+import { Button } from "../button";
+import { Input } from "../input";
+import Avatar from "../widget/avatar";
+import { Label } from "../label";
 
 export default function AccountForm({ session }: { session: Session | null }) {
   const supabase = createClientComponentClient<Database>();
@@ -77,14 +81,25 @@ export default function AccountForm({ session }: { session: Session | null }) {
   }
 
   return (
-    <div className="form-widget">
+    <div className=" space-y-4">
+      <Avatar
+        uid={user.id}
+        url={avatar_url}
+        size={150}
+        onUpload={(url) => {
+          setAvatarUrl(url);
+          updateProfile({ fullname, username, website, avatar_url: url });
+        }}
+      />
+
       <div>
-        <label htmlFor="email">Email</label>
-        <input id="email" type="text" value={session?.user.email} disabled />
+        <Label htmlFor="email">Email</Label>
+        <Input id="email" type="text" value={session?.user.email} disabled />
       </div>
+
       <div>
-        <label htmlFor="fullName">Full Name</label>
-        <input
+        <Label htmlFor="fullName">Full Name</Label>
+        <Input
           id="fullName"
           type="text"
           value={fullname || ""}
@@ -92,8 +107,8 @@ export default function AccountForm({ session }: { session: Session | null }) {
         />
       </div>
       <div>
-        <label htmlFor="username">Username</label>
-        <input
+        <Label htmlFor="username">Username</Label>
+        <Input
           id="username"
           type="text"
           value={username || ""}
@@ -101,8 +116,8 @@ export default function AccountForm({ session }: { session: Session | null }) {
         />
       </div>
       <div>
-        <label htmlFor="website">Website</label>
-        <input
+        <Label htmlFor="website">Website</Label>
+        <Input
           id="website"
           type="url"
           value={website || ""}
@@ -111,22 +126,22 @@ export default function AccountForm({ session }: { session: Session | null }) {
       </div>
 
       <div>
-        <button
-          className="button primary block"
+        <Button
+          className="bg-blue-500 hover:bg-blue-700 w-full"
           onClick={() =>
             updateProfile({ fullname, username, website, avatar_url })
           }
           disabled={loading}
         >
           {loading ? "Loading ..." : "Update"}
-        </button>
+        </Button>
       </div>
 
       <div>
         <form action="/auth/signout" method="post">
-          <button className="button block" type="submit">
+          <Button className="w-full" type="submit">
             Sign out
-          </button>
+          </Button>
         </form>
       </div>
     </div>
