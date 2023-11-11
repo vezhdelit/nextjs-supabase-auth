@@ -22,7 +22,7 @@ export default function AuthForm() {
           },
         },
       }}
-      providers={["google", "github"]}
+      providers={["google", "github", "discord"]}
       redirectTo="http://localhost:3000/auth/callback"
     />
   );
