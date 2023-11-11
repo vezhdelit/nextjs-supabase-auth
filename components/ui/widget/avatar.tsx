@@ -86,9 +86,11 @@ export default function Avatar({
         />
       ) : (
         <div
-          className="avatar no-image"
+          className="flex bg-neutral-200 rounded-full items-center justify-center"
           style={{ height: size, width: size }}
-        />
+        >
+          <h3 className=" text-center">No image</h3>
+        </div>
       )}
       <div className="flex justify-center items-center" style={{ width: size }}>
         <Label

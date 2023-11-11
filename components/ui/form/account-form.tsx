@@ -22,6 +22,9 @@ export default function AccountForm({ session }: { session: Session | null }) {
   const getProfile = useCallback(async () => {
     try {
       setLoading(true);
+      if (!user) {
+        throw new Error();
+      }
 
       const { data, error, status } = await supabase
         .from("profiles")
@@ -78,6 +81,14 @@ export default function AccountForm({ session }: { session: Session | null }) {
     } finally {
       setLoading(false);
     }
+  }
+
+  if (!user) {
+    return (
+      <div className=" space-y-4">
+        <h1>Cant reach user data.</h1>
+      </div>
+    );
   }
 
   return (
