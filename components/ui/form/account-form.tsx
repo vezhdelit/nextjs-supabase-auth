@@ -7,7 +7,7 @@ import {
 import { Database } from "@/types/supabase";
 import { Button } from "../button";
 import { Input } from "../input";
-import Avatar from "../widget/avatar";
+import UploadAvatar from "./upload-avatar";
 import { Label } from "../label";
 
 export default function AccountForm({ session }: { session: Session | null }) {
@@ -93,7 +93,7 @@ export default function AccountForm({ session }: { session: Session | null }) {
 
   return (
     <div className=" space-y-4">
-      <Avatar
+      <UploadAvatar
         uid={user.id}
         url={avatar_url}
         size={150}

@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+
 import Image from "next/image";
 import { Database } from "@/types/supabase";
 import { Label } from "../label";

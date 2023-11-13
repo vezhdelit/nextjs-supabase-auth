@@ -1,14 +1,20 @@
-import AuthForm from "@/components/ui/form/auth-form";
+import Link from "next/link";
 
-export default function Home() {
+const Home = () => {
   return (
-    <section className=" max-[500px]:bg-white flex w-screen h-screen items-center justify-center">
-      <div className=" bg-white w-[500px] p-8 rounded-lg">
-        <h1 className=" text-neutral-700 p-6 text-center text-xl font-semibold">
-          Welcome to the NextJS Supabase Auth
-        </h1>
-        <AuthForm />
+    <section className=" flex flex-col w-screen h-screen items-center ">
+      <div className="flex p-4 w-full">
+        <nav className="flex w-full bg-white py-6 px-8 rounded-lg justify-between">
+          <Link href="/account" className="underline">
+            Account
+          </Link>
+          <Link href="/signin" className="underline">
+            Sign In
+          </Link>
+        </nav>
       </div>
     </section>
   );
-}
+};
+
+export default Home;
