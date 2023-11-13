@@ -10,7 +10,7 @@ import { Input } from "../input";
 import UploadAvatar from "./upload-avatar";
 import { Label } from "../label";
 
-export default function AccountForm({ session }: { session: Session | null }) {
+const AccountForm = ({ session }: { session: Session | null }) => {
   const supabase = createClientComponentClient<Database>();
   const [loading, setLoading] = useState(true);
   const [fullname, setFullname] = useState<string | null>(null);
@@ -53,7 +53,7 @@ export default function AccountForm({ session }: { session: Session | null }) {
     getProfile();
   }, [user, getProfile]);
 
-  async function updateProfile({
+  const updateProfile = async ({
     username,
     website,
     avatar_url,
@@ -62,7 +62,7 @@ export default function AccountForm({ session }: { session: Session | null }) {
     fullname: string | null;
     website: string | null;
     avatar_url: string | null;
-  }) {
+  }) => {
     try {
       setLoading(true);
 
@@ -81,7 +81,7 @@ export default function AccountForm({ session }: { session: Session | null }) {
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   if (!user) {
     return (
@@ -147,14 +147,8 @@ export default function AccountForm({ session }: { session: Session | null }) {
           {loading ? "Loading ..." : "Update"}
         </Button>
       </div>
-
-      <div>
-        <form action="/auth/signout" method="post">
-          <Button className="w-full" type="submit">
-            Sign out
-          </Button>
-        </form>
-      </div>
     </div>
   );
-}
+};
+
+export default AccountForm;

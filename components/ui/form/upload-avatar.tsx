@@ -9,7 +9,7 @@ import { Label } from "../label";
 import { Input } from "../input";
 type Profiles = Database["public"]["Tables"]["profiles"]["Row"];
 
-export default function Avatar({
+const Avatar = ({
   uid,
   url,
   size,
@@ -19,13 +19,13 @@ export default function Avatar({
   url: Profiles["avatar_url"];
   size: number;
   onUpload: (url: string) => void;
-}) {
+}) => {
   const supabase = createClientComponentClient<Database>();
   const [avatarUrl, setAvatarUrl] = useState<Profiles["avatar_url"]>(url);
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
-    async function downloadImage(path: string) {
+    const downloadImage = async (path: string) => {
       try {
         const { data, error } = await supabase.storage
           .from("avatars")
@@ -39,7 +39,7 @@ export default function Avatar({
       } catch (error) {
         console.log("Error downloading image: ", error);
       }
-    }
+    };
 
     if (url) downloadImage(url);
   }, [url, supabase]);
@@ -114,4 +114,6 @@ export default function Avatar({
       </div>
     </div>
   );
-}
+};
+
+export default Avatar;

@@ -5,7 +5,7 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/types/supabase";
 import { getURL } from "@/utils/helpers";
 
-export default function AuthForm() {
+const AuthForm = async () => {
   const supabase = createClientComponentClient<Database>();
 
   return (
@@ -27,4 +27,6 @@ export default function AuthForm() {
       redirectTo={`${getURL()}/auth/callback`}
     />
   );
-}
+};
+
+export default AuthForm;
