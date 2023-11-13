@@ -9,7 +9,6 @@ const Home = () => {
           <Button variant="link" asChild>
             <Link href="/account">Account</Link>
           </Button>
-
           <form action="/auth/signout" method="post">
             <Button variant="link">Sign Out</Button>
           </form>
